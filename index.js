@@ -1,43 +1,20 @@
-/* Задание 1 - каррирование функции с любым числом аргументов */
+import curry from "./curry.js";
+import nestedObjectFromDottedString from "./nestedObjectFromDottedString.js";
 
-const curry = (fn) => {
-    const curried = (...args) => {
-        if (fn.length <= args.length) return fn.apply(this, args)
+/* Задание 1 */
 
-        return (...rest) => curried(...args, ...rest)
-    }
-
-    return curried
-}
-
-const logFourArgs = (a, b, c, d) => console.log(a, b, c, d)
+const logFourArgs = (a, b, c, d) => console.log(a, b, c, d) // Логирует 4 аргумента в консоль
 const curriedLogFourArgs = curry(logFourArgs)
 
-curriedLogFourArgs("test")
-curriedLogFourArgs("a", "b", "c", "d")
+curriedLogFourArgs("undefined test")
 curriedLogFourArgs("a")("b")("c")("d")
 curriedLogFourArgs("a", "b")("c")("d")
-curriedLogFourArgs("a")("b", "c", "d")
 
-const sum = (a, b, c) => a + b + c
-const curriedSum = curry(sum)
+const addThreeArgs = (a, b, c) => a + b + c // Складывает 3 аргумента
+const curriedSum = curry(addThreeArgs)
 
-console.log(curriedSum(2)(3)(5))
+console.log("2 + 3 + 5 =", curriedSum(2)(3)(5))
 
-/* Задание 2 - преобразование строки в объект, разделяя свойства по точке */
-
-const nestedObjectFromDottedString = (dottedString) => {
-    const keys = dottedString.split(".")
-    const result = {}
-
-    let currentObject = result
-
-    for (const key of keys) {
-        currentObject[key] = {}
-        currentObject = currentObject[key]
-    }
-
-    return result
-}
+/* Задание 2 */
 
 console.dir(nestedObjectFromDottedString('one.two.three.four.five'), {depth: null})
