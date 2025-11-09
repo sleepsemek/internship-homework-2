@@ -1,9 +1,8 @@
 /* Задание 1 - каррирование функции с любым числом аргументов */
 
-const curry = (fn) => {
+function curry(fn) {
     function curried(...args) {
-        if (fn.length <= args.length) return fn.apply(this, args)
-        console.log(this)
+        if (args.length >= fn.length) return fn.call(this, ...args)
 
         return (...rest) => curried.call(this, ...args, ...rest)
     }
