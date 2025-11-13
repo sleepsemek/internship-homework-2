@@ -18,3 +18,8 @@ console.log("2 + 3 + 5 =", curriedSum(2)(3)(5))
 /* Задание 2 */
 
 console.dir(nestedObjectFromDottedString('one.two.three.four.five'), {depth: null})
+console.dir(nestedObjectFromDottedString('one.two .three.four.five'), {depth: null})
+console.dir(nestedObjectFromDottedString('one.two.three...four.five'), {depth: null})
+console.dir(nestedObjectFromDottedString('one.'), {depth: null})
+console.dir(nestedObjectFromDottedString(), {depth: null})
+console.dir(nestedObjectFromDottedString(''), {depth: null})
